@@ -23,9 +23,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= page.app %>/image',
+                    cwd: '<%= page.dist %>/css',
                     src: '{,*/}*.{gif,jpeg,jpg,png,cur}',
-                    dest: '<%= page.dist %>/image'
+                    dest: '<%= page.dist %>/css'
                 }]
             }
         },
@@ -118,6 +118,7 @@ module.exports = function(grunt) {
             'concurrent:server',
             'autoprefixer',
             'cssmin',
+            'imagemin',
             'uglify',
             'connect',
             'watch'
