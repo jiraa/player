@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>练小习原创歌曲系列</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.4">
+<meta name="MobileOptimized" content="240">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jplayer.js"></script>
+<script type="text/javascript" src="js/lrc.js"></script>
+
+<script>
+//<![CDATA[
+$(document).ready(function(){
+  var $au = $('.jp-audio');
+  var $con = $('.content');
+  var $inner = $('.inner');
+  var conHeight = $(window).height() - $au.height() - 10;
+  $con.height(conHeight);
+  $inner.height(conHeight - 20);
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function (event) {
+			$(this).jPlayer("setMedia", {
+				mp3:"zj.mp3" //mp3的播放地址
+			});
+		},
+		timeupdate: function(event) {
+			if(event.jPlayer.status.currentTime==0){
+				time = "";
+			}else {
+				time = event.jPlayer.status.currentTime;
+			}
+		},
+		play: function(event) {
+			//点击开始方法调用lrc。start歌词方法 返回时间time
+			$.lrc.start($('#lrc_content').val(), function() {
+				return time;
+			});
+		},
+		ended:function(event){
+			$("#lrc_list").removeAttr("style").html("<li>歌曲播放完毕！</li>");
+		},
+		swfPath: "/js",  		//存放jplayer.swf的决定路径
+		solution:"html, flash", //支持的页面
+		supplied: "mp3",		//支持的音频的格式
+		wmode: "window"
+	});
+});
+//]]>
+</script>
+</head>
+<body>
+<textarea id="lrc_content" name="textfield" cols="70" rows="10" style="display:none;"> 
+
+
+[00:01.00]再见
+[00:07.00]作词：练小习
+[00:10.00]作曲：练小习
+[00:16.00]所有的记忆 只是一转眼
+[00:23.00]从一个夏天 到另一个夏天
+[00:30.00]静静的看着 你渐行渐远
+[00:37.00]心里定格着你的笑颜
+[00:43.00]看透了所有 悲喜与聚散
+[00:50.00]轮回里不过 是又一次预演
+[00:57.00]一句听不出 伤感的再见
+[01:03.50]留给未来岁月去荏苒
+[01:09.00]每次会面点头微笑然后擦肩
+[01:16.00]也许这样是遗憾也许这才圆满
+[01:23.00]下次会面已然不知何日何年
+[01:30.00]也许这样会心酸也许才是浪漫
+[01:36.00]也许再也不见面
+[02:10.00]看透了所有 悲喜与聚散
+[02:17.00]轮回里不过 是又一次预演
+[02:24.00]一句听不出 伤感的再见
+[02:30.00]留给未来岁月去荏苒
+[02:36.00]每次会面点头微笑然后擦肩
+[02:43.00]也许这样是遗憾也许这才圆满
+[02:50.00]下次会面已然不知何日何年
+[02:56.00]也许这样会心酸也许才是浪漫
+[03:03.00]也许再也不见面
+[03:10.00]每次会面点头微笑然后擦肩
+[03:17.00]也许这样是遗憾也许这才圆满
+[03:23.00]下次会面已然不知何日何年
+[03:30.00]也许这样会心酸也许才是浪漫
+[03:37.00]也许再也不见面
+</textarea>
+<div class="music-box">
+<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+<div id="jp_container_1" class="jp-audio">
+  <div class="jp-type-single">
+    <div class="jp-gui jp-interface">
+      <ul class="jp-controls">
+        <li><a href="javascript:;" class="jp-play " tabindex="1"><i class="iconfont">&#xe600;</i></a></li>
+        <li><a href="javascript:;" class="jp-pause" tabindex="1"><i class="iconfont">&#xe601;</i></a></li>
+        <li><a href="javascript:;" class="jp-stop" tabindex="1"><i class="iconfont">&#xe604;</i></a></li>
+      </ul>
+      <div class="jp-progress">
+        <div class="jp-seek-bar">
+          <div class="jp-play-bar"></div>
+        </div>
+      </div>
+      <div class="jp-time-holder">
+        <div class="jp-current-time"></div>
+        <div class="jp-duration"></div>
+      </div>
+    </div>
+    <div class="jp-no-solution"> <span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. </div>
+  </div>
+</div>
+<div class="content">
+  <div class="inner">
+    <ul id="lrc_list">
+    	<li>点击开始按钮播放……</li>
+    </ul>
+  </div>
+</div>
+</div>
+</body>
+</html>
