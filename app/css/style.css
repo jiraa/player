@@ -220,7 +220,7 @@ div.jp-play-bar {
 	background:#Fc0;
 	width:0px;
 	height:100%;
-	box-shadow: #Fc0 0px 0px 2px;
+	box-shadow: #Fc0 0px 0px 4px;
 }
 
 /* The seeking class is added/removed inside jPlayer */
